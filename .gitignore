@@ -1,0 +1,20 @@
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+*.iml
+
+# Secrets: never commit real settings or keys
+.env
+.env.*
+!.env.example
+
+# Build output and dependencies
+node_modules/
+backend/target/
+frontend/dist/
+
+# Local H2 database and logs
+backend/data/
+data/
+*.log
