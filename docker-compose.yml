@@ -1,0 +1,53 @@
+# Full TokenFest stack: PostgreSQL + backend + dashboard (nginx).
+#
+#   cp .env.example .env      # then set TOKENFEST_ENCRYPTION_KEY (and a password)
+#   docker compose up -d --build
+#
+# Dashboard and API: http://localhost:8080 (OpenAI SDK base URL: http://localhost:8080/v1)
+# Only the database for local development:  docker compose up -d postgres
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-tokenfest}
+      POSTGRES_USER: ${POSTGRES_USER:-tokenfest}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-tokenfest}
+    ports:
+      # Only reachable from this machine (for running the backend outside Docker)
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    depends_on:
+      postgres:
+        condition: service_healthy
+    # Optional settings (SMTP, time zone, ...) are read from .env
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      DB_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-tokenfest}
+      DB_USERNAME: ${POSTGRES_USER:-tokenfest}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-tokenfest}
+      TOKENFEST_ENCRYPTION_KEY: ${TOKENFEST_ENCRYPTION_KEY:?Set TOKENFEST_ENCRYPTION_KEY in .env (openssl rand -base64 32)}
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "${TOKENFEST_PORT:-8080}:80"
+    restart: unless-stopped
+
+volumes:
+  pgdata:
