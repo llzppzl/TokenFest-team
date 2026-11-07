@@ -1,0 +1,4 @@
+# Used by docker-compose.yml. The backend is only reachable through nginx, so the
+# client address can be taken from the X-Forwarded-For header that nginx sets.
+server:
+  forward-headers-strategy: native

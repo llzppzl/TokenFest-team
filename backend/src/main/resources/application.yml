@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: tokenfest-gateway
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/tokenfest}
+    username: ${DB_USERNAME:tokenfest}
+    password: ${DB_PASSWORD:tokenfest}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+  flyway:
+    locations: classpath:db/migration
+  codec:
+    # LLM requests from coding agents can be several MB
+    max-in-memory-size: 32MB
+
+server:
+  port: ${PORT:8080}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+tokenfest:
+  version: @project.version@
+  # Months (for budgets) and daily stats use this time zone
+  time-zone: ${TOKENFEST_TIME_ZONE:UTC}
+  # Base64 of 32 random bytes, used to encrypt provider API keys: openssl rand -base64 32
+  encryption-key: ${TOKENFEST_ENCRYPTION_KEY:}
+  upstream:
+    connect-timeout: 10s
+    read-timeout: 300s
+    # Streaming requests move to the next provider if this one hasn't started answering
+    stream-headers-timeout: 60s
+  max-body-chars: 100000
+  # Store request and response bodies in the request log (turn off for privacy)
+  log-bodies: ${TOKENFEST_LOG_BODIES:true}
+  # First admin account (only used when there is no admin yet)
+  admin:
+    username: ${TOKENFEST_ADMIN_USERNAME:admin}
+    password: ${TOKENFEST_ADMIN_PASSWORD:}
+  # Request logs (with bodies) older than this are deleted every night; 0 keeps them forever.
+  # Daily totals are always kept.
+  log-retention-days: ${TOKENFEST_LOG_RETENTION_DAYS:90}
+  # How long a dashboard login lasts
+  session-ttl: 12h
+  alerts:
+    from: ${TOKENFEST_ALERT_FROM:tokenfest@localhost}
+# Email alerts need an SMTP server, for example:
+#   SPRING_MAIL_HOST=smtp.gmail.com SPRING_MAIL_PORT=587 SPRING_MAIL_USERNAME=... SPRING_MAIL_PASSWORD=...
+#   SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE=true SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH=true
