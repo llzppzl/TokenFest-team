@@ -37,7 +37,7 @@ The Week 1 code comes as three packages (`Phoebe_L.zip`, `Xiaohan_Wang.zip`, `Mi
 cd Phoebe_L/code
 git init -b main
 git add -A
-git commit -m "Add gateway core and project setup" -m "Code originally written by Phoebe L."
+git commit -m "Add gateway core and project setup"
 git remote add origin https://github.com/llzppzl/TokenFest-team.git
 git push -u origin main
 ```
@@ -53,7 +53,7 @@ git switch -c feature/week1-member2
 cp -R /path/to/Xiaohan_Wang/code/. .
 git add -A
 git status                       # only your module's files
-git commit -m "Add keys, auth and accounting module" -m "Code originally written by Phoebe L."
+git commit -m "Add keys, auth and accounting module"
 git push -u origin feature/week1-member2
 ```
 

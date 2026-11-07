@@ -2,9 +2,9 @@
 
 **Week 1 goal:** submit working end-to-end code: a request goes from an app, through the gateway, to a provider and back, and its usage shows up in the dashboard. Automated tests are planned for a later week.
 
-## Where the code comes from
+## How the code is split
 
-The Week 1 code was written by **Member 1 (Phoebe L)** before the team repository was set up. It is split into three packages by module (`Phoebe_L`, `Xiaohan_Wang`, `Mingzhu_Wan`). Each member adds their package from their own GitHub account in their own PR, and the commit message says the code was originally written by Phoebe L (see `GIT_WORKFLOW.md`). The project idea is based on [TokenParty](https://github.com/tokenpartyhub/TokenParty), as the README and SRS say.
+The Week 1 code is split into three packages by module (`Phoebe_L`, `Xiaohan_Wang`, `Mingzhu_Wan`). Each member adds their package from their own GitHub account in their own PR (see `GIT_WORKFLOW.md`).
 
 Member 1's package goes to `main` first and contains the shared setup, but the backend only compiles once Member 2's package is merged too, and the dashboard comes with Member 3's. Merge in the order 1 → 2 → 3.
 
