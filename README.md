@@ -1,6 +1,6 @@
 # TokenFest
 
-TokenFest is a self-hosted gateway for LLM APIs, built for small teams that share one company account at OpenAI, Anthropic or DeepSeek. Today the whole team usually shares one API key, so nobody knows who spent what until the bill comes, and one runaway script can use up the month's budget. With TokenFest, each member gets their own TokenFest key, and apps and AI tools only change their base URL. The gateway forwards each request to the right provider, switches to a backup provider when one fails, records the tokens and cost of every request, enforces a monthly budget and rate limit per key, and alerts the team before a budget runs out. Admins see where the money goes on a dashboard; members see their own usage. The idea is based on the open-source project [TokenParty](https://github.com/tokenpartyhub/TokenParty).
+TokenFest is a self-hosted gateway for LLM APIs, built for small teams that share one company account at OpenAI, Anthropic or DeepSeek. Today the whole team usually shares one API key, so nobody knows who spent what until the bill comes, and one runaway script can use up the month's budget. With TokenFest, each member gets their own TokenFest key, and apps and AI tools only change their base URL. The gateway forwards each request to the right provider, switches to a backup provider when one fails, records the tokens and cost of every request, enforces a monthly budget and rate limit per key, and alerts the team before a budget runs out. Admins see where the money goes on a dashboard; members see their own usage.
 
 ## Team
 
