@@ -15,6 +15,7 @@ TokenFest is a self-hosted gateway for LLM APIs, built for small teams that shar
 The layout follows the architecture in our Phase 1 SRS ([docs/SRS.docx](docs/SRS.docx), [docs/architecture.md](docs/architecture.md)): a Spring Boot gateway, a React dashboard and a PostgreSQL database. The backend is split by feature, and inside each feature into controller (HTTP), service (business logic) and repository (data access) classes.
 
 ```
+
 TokenFest-team/
   backend/                           Spring Boot 4 gateway (Java 21, Maven)
     src/main/java/com/tokenfest/gateway/
@@ -44,6 +45,13 @@ TokenFest-team/
     src/api.ts, src/types.ts         API client and shared types
     src/*.test.ts                    Vitest unit tests
   docs/                              SRS, architecture, API, database, deployment, user guide, wireframes
+  screenshots/                       Screenshots of the TokenFest web interface
+    login.png                        Login page
+    overview.png                     Admin dashboard overview
+    requests.png                     API request monitoring
+    providers.png                    Provider management
+    keys.png                         API key management
+    settings.png                     Application settings
   docker-compose.yml                 full stack: PostgreSQL + backend + dashboard (nginx)
 ```
 
@@ -121,5 +129,5 @@ All settings are environment variables; [.env.example](.env.example) lists them.
 |---|---|---:|
 | Phoebe L | Responsible for the gateway core: committed `proxy/`, `provider/`, `crypto/`, `config/`, `web/`, the Maven build and the application settings. Set up the repository and project docs (README, contributing guide, Git workflow, SRS, architecture). Reviewed and merged the team's pull requests and resolved the `pom.xml` merge conflict so the backend tests run with the full build. | 25 |
 | Xiaohan Wang | Responsible for the backend services: committed `keys/`, `auth/`, `limits/`, `usage/`, `alerts/`, `stats/`, `export/`, `settings/`, `user/`, `maintenance/`, `domain/`, `repository/` and the database schema. Wrote the 21 backend unit tests (`CostCalculatorTest`, `MoneyTest`, `UsageTest`, `BudgetPeriodTest`, `ConcurrencyLimiterTest`, `DateRangeTest`, `CsvExporterTest`). | 15 |
-| Mingzhu Wan | Responsible for the frontend and deployment: committed the Vite and TypeScript setup, API client and types, auth context, layout, all dashboard pages, charts and export, the Docker, nginx and project configuration, and the user guide, deployment guide and wireframes. Added Vitest and wrote the 6 frontend unit tests (`dates.test.ts`, `session.test.ts`). | 23 |
+| Mingzhu Wan | Responsible for the frontend and deployment: committed the Vite and TypeScript setup, API client and types, auth context, layout, all dashboard pages, charts and export, the Docker, nginx and project configuration, and the user guide, deployment guide and wireframes. Added Vitest and wrote the 6 frontend unit tests (`dates.test.ts`, `session.test.ts`). | 24 |
 
