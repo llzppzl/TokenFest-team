@@ -52,6 +52,11 @@ TokenFest-team/
     providers.png                    Provider management
     keys.png                         API key management
     settings.png                     Application settings
+    demo-first-request.png           First successful gateway request
+    demo-overview.png                Dashboard with 21 successful requests and usage statistics
+    demo-requests.png                Request logs with tokens, costs, latency and status
+    demo-providers.png               Configured local mock LLM provider
+    demo-keys.png                    Team member API key with budget and rate limit
   docker-compose.yml                 full stack: PostgreSQL + backend + dashboard (nginx)
 ```
 
@@ -129,5 +134,5 @@ All settings are environment variables; [.env.example](.env.example) lists them.
 |---|---|---:|
 | Phoebe L | Responsible for the gateway core: committed `proxy/`, `provider/`, `crypto/`, `config/`, `web/`, the Maven build and the application settings. Set up the repository and project docs (README, contributing guide, Git workflow, SRS, architecture). Reviewed and merged the team's pull requests and resolved the `pom.xml` merge conflict so the backend tests run with the full build. | 25 |
 | Xiaohan Wang | Responsible for the backend services: committed `keys/`, `auth/`, `limits/`, `usage/`, `alerts/`, `stats/`, `export/`, `settings/`, `user/`, `maintenance/`, `domain/`, `repository/` and the database schema. Wrote the 21 backend unit tests (`CostCalculatorTest`, `MoneyTest`, `UsageTest`, `BudgetPeriodTest`, `ConcurrencyLimiterTest`, `DateRangeTest`, `CsvExporterTest`). | 15 |
-| Mingzhu Wan | Responsible for the frontend and deployment: committed the Vite and TypeScript setup, API client and types, auth context, layout, all dashboard pages, charts and export, the Docker, nginx and project configuration, and the user guide, deployment guide and wireframes. Added Vitest and wrote the 6 frontend unit tests (`dates.test.ts`, `session.test.ts`). | 24 |
+| Mingzhu Wan | Responsible for the frontend and deployment: committed the Vite and TypeScript setup, API client and types, auth context, layout, all dashboard pages, charts and export, the Docker, nginx and project configuration, and the user guide, deployment guide and wireframes. Added Vitest and wrote the 6 frontend unit tests (`dates.test.ts`, `session.test.ts`). | 25 |
 
