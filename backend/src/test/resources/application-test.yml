@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:tokenfest;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH;DB_CLOSE_DELAY=-1
+    username: sa
+    password: ""
+
+tokenfest:
+  # Test-only key, never use it for real data
+  encryption-key: dGVzdC1rZXktdGVzdC1rZXktdGVzdC1rZXktMTIzNDU=
+  alerts:
+    retry-backoff: 10ms
+  upstream:
+    stream-headers-timeout: 1s
