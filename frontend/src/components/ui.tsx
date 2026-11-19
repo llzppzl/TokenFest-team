@@ -72,7 +72,10 @@ const FOCUSABLE = 'button, [href], input, select, textarea, [tabindex]:not([tabi
 export function Modal({ title, onClose, children }: { title: string; onClose: () => void; children: ReactNode }) {
   const dialogRef = useRef<HTMLDivElement>(null)
   const closeRef = useRef(onClose)
-  closeRef.current = onClose
+  // Keep the latest onClose for the key handler without re-running the effect below
+  useEffect(() => {
+    closeRef.current = onClose
+  }, [onClose])
 
   useEffect(() => {
     const previous = document.activeElement as HTMLElement | null
